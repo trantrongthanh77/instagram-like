@@ -17,11 +17,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class SimpleCORSFilter implements Filter {
+public class CORSFilter implements Filter {
 
-private final Logger log = LoggerFactory.getLogger(SimpleCORSFilter.class);
+private final Logger log = LoggerFactory.getLogger(CORSFilter.class);
 
-public SimpleCORSFilter() {
+public CORSFilter() {
     log.info("SimpleCORSFilter init");
 }
 
@@ -31,9 +31,9 @@ public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
     HttpServletResponse response = (HttpServletResponse) res;
     HttpServletRequest request = (HttpServletRequest) req;
     response.setHeader("Access-Control-Allow-Origin", "*");
-    response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+    response.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
     response.setHeader("Access-Control-Max-Age", "3600");
-    response.setHeader("Access-Control-Allow-Headers", "x-requested-with, authorization, content-type");
+    response.setHeader("Access-Control-Allow-Headers", "*");
 
     if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
         response.setStatus(HttpServletResponse.SC_OK);
