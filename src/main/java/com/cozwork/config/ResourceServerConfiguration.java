@@ -16,6 +16,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/image/image-name/**").permitAll()
+                .antMatchers("/user/add-user").permitAll()
                 .anyRequest().authenticated();
     }
 }
